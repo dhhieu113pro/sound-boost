@@ -6,6 +6,14 @@
 //! could not create one at all -- and publishes plain numbers into it. See
 //! `sb_ipc` and `docs/risks.md` for the reasoning, and `sb-gain` in this crate
 //! for the command-line version of the same two calls.
+//!
+//! The tray app itself is `src/bin/sb-tray.rs`; everything it decides that does
+//! not need a window lives in the modules below so it can be tested on its own.
+
+pub mod icon;
+pub mod placement;
+pub mod settings;
+pub mod store;
 
 use std::io;
 use std::thread::sleep;

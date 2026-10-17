@@ -17,6 +17,7 @@ version = "0.1.0"
 dependencies = [
  "sb-core",
  "sb-ipc",
+ "windows-sys",
 ]
 
 [[package]]
