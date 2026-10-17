@@ -1,0 +1,20 @@
+[package]
+name = "sb-setup"
+description = "Installer for the Sound Booster APO: registration, effect chains, verification."
+publish = false
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "sb-setup"
+path = "src/main.rs"
+
+[dependencies]
+sb-apo = { workspace = true }
+windows-sys = { workspace = true, features = [
+    "Win32_Foundation",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_Registry",
+] }

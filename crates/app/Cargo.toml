@@ -1,0 +1,16 @@
+[package]
+name = "sb-app"
+description = "Sound Booster user interface: the control tools today, the tray app next."
+publish = false
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "sb-gain"
+path = "src/bin/sb-gain.rs"
+
+[dependencies]
+sb-core.workspace = true
+sb-ipc.workspace = true

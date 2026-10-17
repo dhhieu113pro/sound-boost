@@ -1,0 +1,9 @@
+[package]
+name = "sb-core"
+description = "Real-time DSP for the Sound Booster APO: noise gating, auto leveling (AGC) and a look-ahead limiter."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]

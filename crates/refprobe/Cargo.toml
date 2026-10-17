@@ -1,0 +1,18 @@
+[package]
+name = "sb-refprobe"
+description = "Read-only probe: asks an installed APO what it reports to the audio engine."
+publish = false
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+# Reusing our own ABI mirror is the point: the probe prints the reference
+# product's answer in the same types our APO writes, so the two can be diffed.
+sb-apo = { path = "../apo" }
+windows-sys = { workspace = true, features = [
+    "Win32_Foundation",
+    "Win32_System_Com",
+    "Win32_System_LibraryLoader",
+] }

@@ -1,0 +1,30 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+    "crates/ipc",
+    "crates/apo",
+    "crates/refprobe",
+    "crates/setup",
+    "crates/app",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+license = "MIT OR Apache-2.0"
+repository = "https://example.invalid/sound-booster"
+
+[workspace.dependencies]
+sb-apo = { path = "crates/apo" }
+sb-core = { path = "crates/core" }
+sb-ipc = { path = "crates/ipc" }
+windows-sys = "0.59"
+
+# The APO runs inside audiodg.exe: an unwinding panic across the COM boundary
+# would kill the whole audio engine, so release builds abort instead.
+[profile.release]
+panic = "abort"
+lto = true
+codegen-units = 1

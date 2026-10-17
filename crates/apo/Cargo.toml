@@ -1,0 +1,35 @@
+[package]
+name = "sb-apo"
+description = "The Sound Booster Audio Processing Object loaded by the Windows audio engine (audiodg.exe)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lib]
+# A DLL for the audio engine, but also an rlib so the smoke test can drive the
+# same code in-process without loader games. The name is left at its default
+# (`sb_apo`) so the DLL is `sb_apo.dll` and cannot be confused with any
+# third-party `sbapo.dll` sitting in the same directory.
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+sb-core.workspace = true
+sb-ipc.workspace = true
+
+[features]
+# Append what the engine asks of us to C:\Users\Public\sb-apo-debug.log.
+# Off by default; see the `diag` module for why it is worth having.
+diagnostics = []
+# Answer the effect interfaces exactly like the reference product: the plain
+# `IAudioSystemEffects` and nothing newer. The engine asks for
+# `IAudioSystemEffects2` and then `IAudioSystemEffects3` as soon as an APO
+# admits to the first, and that pair is what it wants before it will build a
+# chain around the APO; see `MODERN_EFFECTS` in `object.rs`.
+legacy-effects = []
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true, features = [
+    "Win32_Foundation",
+    "Win32_System_Com",
+] }

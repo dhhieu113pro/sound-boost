@@ -1,0 +1,10 @@
+# Cargo's output tree: 274 MB of object files, and the paths baked into them are
+# from the machine that built them.
+/target
+
+# What the APO and the experiment scripts write while working on a machine.
+*.log
+
+# Windows noise.
+Thumbs.db
+Desktop.ini
